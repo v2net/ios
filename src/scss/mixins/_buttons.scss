@@ -1,0 +1,111 @@
+// Button variants adjusted to match Shards' design system
+//
+// Easily pump out default styles, as well as :hover, :focus, :active,
+// and disabled options for all buttons
+@mixin button-variant( $background, $border: $background, $hover-background: darken($background, 5%), $hover-border: $hover-background, $hover-box-shadow: 0 4px 10px rgba($background, .25), $active-background: darken($background, 5%), $active-border: darken($border, 10%), $active-box-shadow: inset 0 3px 5px rgba($black, .125)) {
+  color: color-yiq($background);
+  border-color: $border;
+
+  @include gradient-bg($background);
+  @include box-shadow($btn-box-shadow);
+
+  @include hover {
+    color: color-yiq($hover-background);
+    @include gradient-bg($hover-background);
+    border-color: $hover-border;
+    @if $enable-shadows {
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05), $hover-box-shadow;
+    }
+  }
+
+  &:focus,
+  &.focus {
+    @if $enable-shadows {
+      box-shadow: 0 0 0 3px rgba($background, .15), 0 3px 15px rgba($background, 0.2), 0 2px 5px rgba($black, .1);
+    }
+    @else {
+      box-shadow: 0 0 0 3px rgba($background, .5);
+    }
+  }
+  
+  // Disabled comes first so active can properly restyle
+  &.disabled,
+  &:disabled {
+    background-color: $background;
+    border-color: $border;
+    box-shadow: none;
+    cursor: not-allowed;
+  }
+
+  &:not(:disabled):not(.disabled):active,
+  &:not(:disabled):not(.disabled).active,
+  .show>&.dropdown-toggle {
+    color: color-yiq($active-background);
+    background-color: $active-background;
+    border-color: $active-border;
+    background-image: none;
+    box-shadow: $active-box-shadow !important;
+  }
+}
+
+@mixin button-outline-variant( $color, $color-hover: color-yiq($color), $active-background: $color, $active-border: $color) {
+  $button-text-color: $color; // Fix light or white outlined buttons
+
+  @if ($color==theme-color("light") or $color==$white) {
+    $button-text-color: color-yiq($color);
+  }
+
+  background-color: transparent;
+  background-image: none;
+  border-color: $color;
+  color: $button-text-color;
+
+  &:hover {
+    color: color-yiq($color);
+    background-color: $active-background;
+    border-color: $active-border;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05), 0 4px 10px rgba($color, .25);
+  }
+
+  &:focus,
+  &.focus {
+    @if $enable-shadows {
+      box-shadow: 0 0 0 3px rgba($color, .15), 0 3px 15px rgba($color, 0.2), 0 2px 5px rgba($black, .1) !important;
+    }
+    @else {
+      box-shadow: 0 0 0 3px rgba($color, .5) !important;
+    }
+  }
+
+  &.disabled,
+  &:disabled {
+    color: $color;
+    background-color: transparent;
+    box-shadow: none;
+  }
+
+  &:not(:disabled):not(.disabled):active,
+  &:not(:disabled):not(.disabled).active,
+  .show>&.dropdown-toggle {
+    color: color-yiq($active-background);
+    background-color: $active-background;
+    border-color: $active-border;
+    &:focus {
+      // Avoid using mixin so we can pass custom focus shadow properly
+      @if $enable-shadows {
+        box-shadow: inset 0 3px 5px rgba($black, .125) !important;
+      }
+      @else {
+        box-shadow: none !important;
+      }
+    }
+  }
+}
+
+// Button sizes
+@mixin button-size( $padding-y, $padding-x, $font-size, $line-height, $border-radius) {
+  padding: $padding-y $padding-x;
+  font-size: $font-size;
+  line-height: $line-height;
+  border-radius: $border-radius;
+}

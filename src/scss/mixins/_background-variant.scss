@@ -1,0 +1,37 @@
+// Contextual backgrounds
+
+@mixin bg-variant($parent, $color) {
+  #{$parent} {
+    background-color: $color !important;
+
+    // Fix cards with background colors.
+    &.card {
+
+      // Improve content accessibility.
+      .card-title,
+      .card-body,
+      .card-header,
+      .card-footer {
+        background-color: darken($color, 10%) !important;
+      }
+
+      // Adjust card header background.
+      .card-header,
+      .card-footer {
+        background: darken($color, 3%);
+      }
+    }
+
+  }
+  a#{$parent} {
+    @include hover-focus {
+      background-color: darken($color, 10%) !important;
+    }
+  }
+}
+
+@mixin bg-gradient-variant($parent, $color) {
+  #{$parent} {
+    background: $color linear-gradient(180deg, mix($body-bg, $color, 15%), $color) repeat-x !important;
+  }
+}

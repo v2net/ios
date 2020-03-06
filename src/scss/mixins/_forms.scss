@@ -1,0 +1,163 @@
+// Forms mixins
+
+// Form control focus state
+@mixin form-control-focus() {
+  &:focus {
+    color: $input-focus-color;
+    background-color: $input-focus-bg;
+    border-color: $input-focus-border-color;
+    
+    @if $enable-shadows {
+      box-shadow: $input-focus-box-shadow;
+    }
+
+    // Set the border color to the focused state border color
+    // when the input is also hovered.
+    &:hover {
+      border-color: $input-focus-border-color;
+    }
+  }
+}
+
+@mixin form-validation-state($state, $color) {
+  .#{$state}-feedback {
+    margin-top: $form-feedback-margin-top;
+    font-size: $form-feedback-font-size;
+    color: $color;
+  }
+
+  .#{$state}-tooltip {
+    background-color: rgba($color, .8);
+  }
+
+  .form-control,
+  .custom-select {
+    .was-validated &:#{$state},
+    &.is-#{$state} {
+      border-color: $color;
+      
+      @include box-shadow(0 5px 11.5px rgba($color, .1));
+
+      &:focus {
+        box-shadow: 0 5px 11.5px rgba($color, .1), 0 1px 1px .1rem rgba($color, .2);
+      }
+
+      &:hover {
+        border-color: $color;
+      }
+    }
+  }
+
+  .form-check-input {
+    .was-validated &:#{$state},
+    &.is-#{$state} {
+      ~ .form-check-label {
+        color: $color;
+      }
+    }
+  }
+
+  .custom-control-input {
+    .was-validated &:#{$state},
+    &.is-#{$state} {
+      ~ .custom-control-label {
+        color: $color;
+
+        &::before {
+          background-color: lighten($color, 20%);
+          border-color: lighten($color, 10);
+        }
+      }
+
+      &:checked {
+        ~ .custom-control-label::before {
+          @include gradient-bg(lighten($color, 10%));
+        }
+      }
+
+      &:focus {
+        ~ .custom-control-label::before {
+          box-shadow: 0 .313rem .719rem rgba($color,.1), 0 .156rem .125rem rgba($black, .06);
+        }
+      }
+    }
+  }
+
+  // Custom file input
+  .custom-file-input {
+    .was-validated &:#{$state},
+    &.is-#{$state} {
+      ~ .custom-file-label {
+        color: $color;
+        border-color: $color;
+
+        &::after {
+          background-color: lighten($color, 40);
+          border-color: lighten($color, 10);
+          color: $color;
+        }
+      }
+    }
+
+    &:focus {
+      .was-validated &:#{$state},
+      &.is-#{$state} {
+        ~ .custom-file-label {
+          border-color: $color;
+          box-shadow: 0 5px 11.5px rgba($color, .1), 0 1px 1px .1rem rgba($color, .2);
+        }
+      }
+    }
+
+    // Fix default custom input hover color issue on validated
+    // custom file inputs.
+    &:hover {
+      .was-validated &:#{$state},
+      &.is-#{$state} {
+        ~ .custom-file-label {
+          border-color: $color;
+        }
+      }
+    }
+  }
+
+  // Custom toggles validation
+  .custom-toggle {
+    .custom-control-input {
+      &:not(:checked) {
+        .was-validated &:#{$state},
+        &.is-#{$state} {
+          ~ .custom-control-label::before {
+            background-color: $custom-toggle-invalid-background-color;
+          }
+        }
+      }
+
+      // Valid custom toggle
+      .was-validated &:valid,
+      &.is-valid {
+        ~ .custom-control-label {
+          &::before {
+            background-color: $custom-toggle-checked-background;
+          }
+        }
+      }
+
+      // Invalid custom toggle
+      .was-validated &:invalid,
+      &.is-invalid {
+        ~ .custom-control-label {
+          &::after {
+            background-color: $custom-toggle-invalid-knob-background-color;
+          }
+        }
+
+        &:focus {
+          ~ .custom-control-label::before {
+            box-shadow: 0 .313rem .719rem rgba($color,.1), 0 .156rem .125rem rgba($black, .06);
+          }
+        }
+      }
+    } 
+  }
+}
