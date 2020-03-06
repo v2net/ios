@@ -1,0 +1,42 @@
+// Code Styling Adjustments
+
+// Inline and block code styles
+code,
+kbd,
+pre,
+samp {
+  font-family: $font-family-monospace;
+}
+
+// Inline code
+code {
+  font-size: $code-font-size;
+  padding: $code-padding-y $code-padding-x;
+}
+
+// User input typically entered via keyboard
+kbd {
+  padding: $kbd-padding-y $kbd-padding-x;
+  font-size: $kbd-font-size;
+  color: $kbd-color;
+  background-color: $kbd-bg;
+  @include border-radius($kbd-border-radius);
+  @include box-shadow($kbd-box-shadow);
+
+  kbd {
+    font-weight: $nested-kbd-font-weight;
+  }
+}
+
+// Blocks of code
+pre {
+  margin-bottom: .75rem;
+  font-size: $code-font-size;
+  color: $pre-color;
+  line-height: $code-line-height;
+}
+
+// Scrollable blocks of code
+.pre-scrollable {
+  max-height: $pre-scrollable-max-height;
+}

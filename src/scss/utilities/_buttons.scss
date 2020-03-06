@@ -1,0 +1,158 @@
+// scss-lint:disable QualifyingElement
+
+//
+// Base styles
+//
+
+.btn {
+  font-weight: $btn-font-weight;
+  font-family: $btn-font-family;
+  border: $input-btn-border-width solid transparent;
+
+  @include button-size(
+    $btn-padding-y,
+    $btn-padding-x,
+    $btn-font-size,
+    $input-btn-line-height,
+    $btn-border-radius
+  );
+
+  @include transition($btn-transition);
+
+  &:hover,
+  &.hover {
+    cursor: pointer;
+  }
+
+  &:focus,
+  &.focus {
+    @include box-shadow(none);
+  }
+
+  &:not([disabled]):not(.disabled):active,
+  &:not([disabled]):not(.disabled).active {
+    background-image: none;
+    @include box-shadow(none);
+  }
+
+  //
+  // Class modifiers
+  //
+
+  &.btn-squared {
+    border-radius: 0;
+  }
+
+  &.btn-pill {
+    border-radius: $btn-pill-border-radius;
+  }
+}
+
+//
+// Alternate buttons
+//
+
+@each $color, $value in $theme-colors {
+  .btn-#{$color} {
+    @include button-variant($value);
+  }
+}
+
+// White buttons
+.btn-white {
+  @include button-variant($white);
+}
+
+// Black buttons
+.btn-black {
+  @include button-variant($black);
+}
+
+// Outlined default buttons
+@each $color, $value in $theme-colors {
+  .btn-outline-#{$color} {
+    @include button-outline-variant($value);
+  }
+}
+
+// White outline buttons
+.btn-outline-white {
+  @include button-outline-variant($white);
+  color: $white;
+
+  &:not(:disabled):not(.disabled):active,
+  &:not(:disabled):not(.disabled).active {
+    color: $black;
+  }
+}
+
+// Black outline buttons
+.btn-outline-black {
+  @include button-outline-variant($black);
+  color: $black;
+
+  &:not(:disabled):not(.disabled):active,
+  &:not(:disabled):not(.disabled).active {
+    color: $white;
+  }
+}
+
+
+//
+// Link buttons
+//
+
+// Make a button look and behave like a link
+.btn-link {
+  font-weight: $font-weight-normal;
+  color: $link-color;
+
+  @include hover {
+    color: $link-hover-color;
+    text-decoration: $link-hover-decoration;
+  }
+
+  &:focus,
+  &.focus {
+    text-decoration: $link-hover-decoration;
+  }
+
+  &:disabled {
+    color: $btn-link-disabled-color;
+  }
+}
+
+
+//
+// Button Sizes
+//
+
+.btn-lg {
+  @include button-size(
+    $btn-padding-y-lg,
+    $btn-padding-x-lg,
+    $btn-font-size-lg,
+    $btn-line-height-lg,
+    $btn-border-radius-lg
+  );
+}
+
+.btn-sm {
+  @include button-size(
+    $btn-padding-y-sm,
+    $btn-padding-x-sm,
+    $btn-font-size-sm,
+    $btn-line-height-sm,
+    $btn-border-radius-sm
+  );
+}
+
+
+//
+// Block button
+//
+
+// Vertically space out multiple block buttons
+.btn-block + .btn-block {
+  margin-top: $btn-block-spacing-y;
+}

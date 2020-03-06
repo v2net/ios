@@ -1,0 +1,192 @@
+// stylelint-disable selector-no-qualifying-type
+
+//
+// Textual form controls
+//
+
+.form-control {
+  height: auto;
+  padding: $input-padding-y $input-padding-x;
+  font-size: $input-font-size; // $font-size-base
+  line-height: $input-line-height;
+  color: $input-color;
+  background-color: $input-bg;
+  border: $input-border-width solid $input-border-color;
+  font-weight: $font-weight-normal;
+  will-change: border-color, box-shadow;
+
+  // Note: This has no effect on <select>s in some browsers, due to the limited stylability of `<select>`s in CSS.
+  @if $enable-rounded {
+    // Manually use the if/else instead of the mixin to account for iOS override
+    border-radius: $input-border-radius;
+  } @else {
+    // Otherwise undo the iOS default
+    border-radius: 0;
+  }
+
+  @include box-shadow($input-box-shadow);
+  @include transition($input-transition);
+
+  &:hover {
+    border-color: $input-hover-border-color;
+  }
+
+  // Customize the `:focus` state to imitate native WebKit styles.
+  @include form-control-focus();
+
+  // Placeholder
+  &::placeholder {
+    color: $input-placeholder-color;
+  }
+
+  // Disabled and read-only inputs
+  &:disabled,
+  &[readonly] {
+    background-color: $input-disabled-bg;
+
+    &:hover {
+      border-color: $input-border-color;
+      cursor: not-allowed;
+    }
+  }
+
+  // Fix readonly, but not disabled fields box shadow and border color.
+  &[readonly]:not(:disabled) {
+    &:focus {
+      box-shadow: none;
+      border-color: $input-border-color;
+    }
+  }
+}
+
+// Select form controls
+
+select.form-control {
+  &:not([size]):not([multiple]) {
+    height: $input-height;
+  }
+
+  &:focus::-ms-value {
+    color: $input-color;
+    background-color: $input-bg;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+// Labels
+
+form label:hover {
+  cursor: pointer;
+}
+
+.col-form-label {
+  padding-top: calc(#{$input-padding-y} + #{$input-border-width});
+  padding-bottom: calc(#{$input-padding-y} + #{$input-border-width});
+  line-height: $input-line-height;
+}
+
+.col-form-label-lg {
+  padding-top: calc(#{$input-padding-y-lg} + #{$input-border-width});
+  padding-bottom: calc(#{$input-padding-y-lg} + #{$input-border-width});
+  font-size: $font-size-lg;
+  line-height: $input-line-height-lg;
+}
+
+.col-form-label-sm {
+  padding-top: calc(#{$input-padding-y-sm} + #{$input-border-width});
+  padding-bottom: calc(#{$input-padding-y-sm} + #{$input-border-width});
+  font-size: $font-size-sm;
+  line-height: $input-line-height-sm;
+}
+
+// Readonly controls as plain text
+.form-control-plaintext {
+  padding-top: $input-padding-y;
+  padding-bottom: $input-padding-y;
+  line-height: $input-line-height;
+  font-weight: $font-weight-normal;
+}
+
+// Form control sizing
+.form-control-sm {
+  padding: $input-padding-y-sm $input-padding-x-sm;
+  font-size: $font-size-sm;
+  line-height: $input-line-height-sm;
+  @include border-radius($input-border-radius-sm);
+}
+
+select.form-control-sm {
+  &:not([size]):not([multiple]) {
+    height: $input-height-sm;
+  }
+}
+
+.form-control-lg {
+  padding: $input-padding-y-lg $input-padding-x-lg;
+  font-size: $font-size-lg;
+  line-height: $input-line-height-lg;
+  @include border-radius($input-border-radius-lg);
+}
+
+select.form-control-lg {
+  &:not([size]):not([multiple]) {
+    height: $input-height-lg;
+  }
+}
+
+// Form groups
+
+.form-group {
+  margin-bottom: $form-group-margin-bottom;
+}
+
+.form-text {
+  margin-top: $form-text-margin-top;
+}
+
+// Checkboxes and radios
+
+.form-check {
+  padding-left: $form-check-input-gutter;
+}
+
+.form-check-input {
+  margin-top: $form-check-input-margin-y;
+  margin-left: -$form-check-input-gutter;
+
+  &:disabled ~ .form-check-label {
+    color: $text-muted;
+  }
+}
+
+.form-check-inline {
+  margin-right: $form-check-inline-margin-x;
+
+  .form-check-input {
+    margin-right: $form-check-inline-input-margin-x;
+  }
+}
+
+
+// Form validation
+//
+// Provide feedback to users when form field values are valid or invalid. Works
+// primarily for client-side validation via scoped `:invalid` and `:valid`
+// pseudo-classes but also includes `.is-invalid` and `.is-valid` classes for
+// server side validation.
+
+@include form-validation-state("valid", $form-feedback-valid-color);
+@include form-validation-state("invalid", $form-feedback-invalid-color);
+
+// Inline forms
+
+.form-inline {
+  @include media-breakpoint-up(sm) {
+    .form-check-input {
+      margin-right: $form-check-input-margin-x;
+    }
+  }
+}

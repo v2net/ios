@@ -1,0 +1,69 @@
+// Pagination adjustments
+
+.pagination {
+  @include list-unstyled();
+  @include border-radius();
+  font-family: $pagination-font-family;
+  font-size: $pagination-font-size;
+}
+
+.page-link {
+  padding: $pagination-padding-y $pagination-padding-x;
+  line-height: $pagination-line-height;
+  color: $pagination-color;
+  background-color: $pagination-bg;
+  border: none;
+  margin: 0;
+
+  @include transition($transition-base);
+
+  &:hover,
+  &:focus {
+    color: $pagination-hover-color;
+    background-color: $pagination-hover-bg;
+    border-color: $pagination-hover-border-color;
+  }
+}
+
+.page-item {
+  box-shadow: $pagination-box-shadow;
+
+  &:first-child {
+    @include border-left-radius($border-radius);
+    overflow: hidden;
+  }
+
+  &:last-child {
+    @include border-right-radius($border-radius);
+    overflow: hidden;
+
+    .page-link {
+      border-right: none;
+    }
+  }
+
+  &.active .page-link {
+    color: $pagination-active-color;
+    background-color: $pagination-active-bg;
+    border-color: $pagination-active-border-color;
+  }
+
+  &.disabled .page-link {
+    color: $pagination-disabled-color;
+    background-color: $pagination-disabled-bg;
+    border-color: $pagination-disabled-border-color;
+  }
+}
+
+
+//
+// Sizing
+//
+
+.pagination-lg {
+  @include pagination-size($pagination-padding-y-lg, $pagination-padding-x-lg, $font-size-lg, $line-height-lg, $border-radius-lg);
+}
+
+.pagination-sm {
+  @include pagination-size($pagination-padding-y-sm, $pagination-padding-x-sm, $font-size-sm, $line-height-sm, $border-radius-sm);
+}

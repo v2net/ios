@@ -1,0 +1,500 @@
+// Custom form controls
+
+// Checkboxes and radios
+
+.custom-control {
+  min-height: (1rem * $line-height-base);
+  padding-left: $custom-control-gutter;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  .custom-control-label:before {
+    pointer-events: all;
+  }
+}
+
+.custom-control-inline {
+  margin-right: $custom-control-spacer-x;
+}
+
+.custom-control-input {
+  &:checked ~ .custom-control-label::before {
+    color: $custom-control-indicator-checked-color;
+    border-color: transparent;
+    @include gradient-bg($custom-control-indicator-checked-bg);
+    @include box-shadow($custom-control-indicator-checked-box-shadow);
+  }
+
+  &:focus ~ .custom-control-label::before {
+    // the mixin is not used here to make sure there is feedback
+    box-shadow: $custom-control-indicator-focus-box-shadow;
+  }
+
+  &:active ~ .custom-control-label::before {
+    color: $custom-control-indicator-active-color;
+    background-color: $custom-control-indicator-active-bg;
+    @include box-shadow($custom-control-indicator-active-box-shadow);
+  }
+
+  &:disabled {
+    ~ .custom-control-label {
+      color: $custom-control-description-disabled-color; // $custom-control-label-disabled-color
+
+      &:hover {
+        cursor: not-allowed;
+      }
+
+      &::before {
+        background-color: $custom-control-indicator-disabled-bg;
+      }
+    }
+
+  }
+}
+
+// Custom control indicators
+//
+// Build the custom controls out of psuedo-elements.
+
+.custom-control-label {
+  position: static;
+  &:hover {
+    cursor: pointer;
+  }
+
+  // Background-color and (when enabled) gradient
+  &::before {
+    top: (($line-height-base - $custom-control-indicator-size) / 2);
+    left: 0;
+    width: $custom-control-indicator-size;
+    height: $custom-control-indicator-size;
+    background-color: $custom-control-indicator-bg;
+    border: $custom-control-indicator-border;
+    transition: all 250ms cubic-bezier(.27,.01,.38,1.06);
+    @include box-shadow($custom-control-indicator-box-shadow);
+  }
+
+  // Foreground (icon)
+  &::after {
+    top: (($line-height-base - $custom-control-indicator-size) / 2);
+    width: $custom-control-indicator-size;
+    height: $custom-control-indicator-size;
+    background-size: $custom-control-indicator-bg-size;
+  }
+}
+
+
+// Checkboxes
+//
+// Tweak just a few things for checkboxes.
+
+.custom-checkbox {
+  .custom-control-label::before {
+    @include border-radius($custom-checkbox-indicator-border-radius);
+  }
+
+  .custom-control-label::after {
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: 7px;
+    width: 5px;
+    height: 11px;
+    opacity: 0;
+    transform: rotate(45deg) scale(0);
+    border-right: 2px solid $white;
+    border-bottom: 2px solid $white;
+    transition: $custom-checkbox-indicator-transition;
+    transition-delay: 100ms;
+  }
+
+  .custom-control-input:checked ~ .custom-control-label {
+    &::before {
+      background-image: none;
+    }
+
+    &::after {
+      opacity: 1;
+      transform: rotate(45deg) scale(1);
+      background-image: $custom-checkbox-indicator-icon-checked;
+    }
+  }
+
+  .custom-control-input:indeterminate ~ .custom-control-label {
+    &::before {
+      border: none;
+      @include gradient-bg($custom-checkbox-indicator-indeterminate-bg);
+      @include box-shadow($custom-checkbox-indicator-indeterminate-box-shadow);
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      transform: scale(1);
+      background-image: $custom-checkbox-indicator-icon-indeterminate;
+      background-color: $white;
+      border: none;
+      width: 10px;
+      height: 2px;
+      top: 11px;
+      left: 4px;
+      opacity: 1;
+      transition: none;
+    }
+  }
+
+  .custom-control-input:disabled:checked ~ .custom-control-label {
+    &::before {
+      background: $custom-control-indicator-disabled-bg;
+      border-color: $border-color;
+    }
+
+    &::after {
+      border-color: $border-color;
+    }
+  }
+}
+
+// Radios
+//
+// Tweak just a few things for radios.
+
+.custom-radio {
+  .custom-control-label::before {
+    border-radius: $custom-radio-indicator-border-radius;
+  }
+
+  .custom-control-label::after {
+    content: '';
+    border-radius: 50%;
+    transform: scale(0);
+    background-image: none !important;
+    position: absolute;
+    background: #fff;
+    width: 8px;
+    height: 8px;
+    top: 8px;
+    left: 5px;
+    transition: all 250ms cubic-bezier(.27,.01,.38,1.06);
+    transition-delay: .1s;
+    opacity: 0;
+    transform: scale(0);
+  }
+
+  .custom-control-input:checked ~ .custom-control-label {
+    &::before {
+      @include gradient-bg($custom-control-indicator-checked-bg);
+    }
+    &::after {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .custom-control-input:disabled {
+    &:checked ~ .custom-control-label::before {
+      background-color: lighten($blueish-grey, 30%);
+    }
+  }
+
+  .custom-control-input:disabled:checked ~ .custom-control-label {
+    &::before {
+      background: $custom-control-indicator-disabled-bg;
+      border-color: $border-color;
+    }
+
+    &::after {
+      background: $border-color;
+    }
+  }
+}
+
+// Select
+//
+// Replaces the browser default select with a custom one
+
+.custom-select {
+  height: $custom-select-height;
+  padding: $custom-select-padding-y ($custom-select-padding-x + $custom-select-indicator-padding) $custom-select-padding-y $custom-select-padding-x;
+  line-height: $custom-select-line-height;
+  color: $custom-select-color;
+  background: $custom-select-bg $custom-select-indicator no-repeat right $custom-select-padding-x center;
+  background-size: $custom-select-bg-size;
+  border: $custom-select-border-width solid $custom-select-border-color;
+  font-weight: $font-weight-normal;
+  font-size: $input-font-size;
+
+  @include transition($input-transition);
+
+  @if $enable-rounded {
+    border-radius: $custom-select-border-radius;
+  } @else {
+    border-radius: 0;
+  }
+
+  &:focus {
+    border-color: $custom-select-focus-border-color;
+    box-shadow: $custom-select-focus-box-shadow;
+
+    &::-ms-value {
+      // For visual consistency with other platforms/browsers,
+      // suppress the default white text on blue background highlight given to
+      // the selected option text when the (still closed) <select> receives focus
+      // in IE and (under certain conditions) Edge.
+      // See https://github.com/twbs/bootstrap/issues/19398.
+      color: $input-color;
+      background-color: $input-bg;
+    }
+  }
+
+  &:hover:not(:focus):not(:disabled) {
+    cursor: pointer;
+    border-color: $input-hover-border-color;
+  }
+
+  &[multiple],
+  &[size]:not([size="1"]) {
+    padding-right: $custom-select-padding-x;
+  }
+
+  &:disabled {
+    color: $custom-select-disabled-color;
+    background-color: $custom-select-disabled-bg;
+  }
+}
+
+.custom-select-sm {
+  height: $custom-select-height-sm;
+  padding-top: $custom-select-padding-y;
+  padding-bottom: $custom-select-padding-y;
+  font-size: $custom-select-font-size-sm;
+}
+
+.custom-select-lg {
+  height: $custom-select-height-lg;
+  font-size: $custom-select-font-size-lg;
+  padding-top: $custom-select-padding-y;
+  padding-bottom: $custom-select-padding-y;
+}
+
+// File
+//
+// Custom file input.
+
+.custom-file {
+  height: $custom-file-height;
+  font-size: $input-font-size;
+
+  @include transition($input-transition);
+}
+
+.custom-file-input {
+  min-width: $custom-file-width;
+  height: $custom-file-height;
+
+  &:focus ~ .custom-file-label {
+    border-color: $custom-file-focus-border-color;
+    color: $input-focus-color;
+    box-shadow: $custom-file-focus-box-shadow;
+
+    &::after {
+      border-color: $custom-file-focus-border-color;
+      color: theme-color("primary");
+      background: lighten($custom-file-focus-border-color, 45);
+    }
+
+    &:hover {
+      border-color: $custom-file-focus-border-color;
+    }
+  }
+
+  @each $lang, $value in $custom-file-text {
+    &:lang(#{$lang}) ~ .custom-file-label::after {
+      content: $value;
+    }
+  }
+
+  &:not(:disabled):hover {
+    cursor: pointer;
+
+    & ~ .custom-file-label,
+    & ~ .custom-file-label:before {
+      border-color: $input-hover-border-color;
+    }
+  }
+
+  &:disabled + .custom-file-label {
+    color: $custom-select-disabled-color;
+    background-color: lighten($custom-select-disabled-bg, 5%);
+  }
+}
+
+.custom-file-label {
+  height: $custom-file-height;
+  padding: $custom-file-padding-x $custom-file-padding-y;
+  line-height: $custom-file-line-height;
+  color: $custom-file-color;
+  background-color: $custom-file-bg;
+  border: $custom-file-border-width solid $custom-file-border-color;
+  font-weight: $font-weight-normal;
+  box-shadow: $custom-file-box-shadow;
+
+  @include transition(box-shadow $transition-duration $ease-in-out-circ, border-color $transition-duration $ease-in-out-circ);
+  @include border-radius($custom-file-border-radius);
+
+  &::after {
+    padding: $custom-file-padding-x $custom-file-padding-y;
+    height: calc(#{$custom-file-height} - #{$custom-file-border-width} * 2);
+    line-height: $custom-file-line-height;
+    color: $custom-file-button-color;
+    border-left: $custom-file-border-width solid $custom-file-border-color;
+
+    @include gradient-bg($custom-file-button-bg);
+    @include border-radius(0 $custom-file-border-radius $custom-file-border-radius 0);
+  }
+}
+
+// Custom toggle
+.custom-toggle {
+  position: relative;
+  padding-left: ($custom-toggle-width + 0.625rem);
+
+  .custom-control-label {
+    // Background
+    &::before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: block;
+      width: $custom-toggle-width;
+      height: $custom-toggle-height;
+      background: $custom-toggle-background-color;
+      border-radius: $custom-toggle-border-radius;
+      border: $custom-toggle-border;
+    }
+
+    // Knob
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0.25rem;
+      left: 0.25rem;
+      width: $custom-toggle-knob-width;
+      height: $custom-toggle-knob-height;
+      background: $input-border-color;
+      border-radius: $custom-toggle-knob-border-radius;
+      transition: 350ms;
+    }
+  }
+
+  // Checked state
+  .custom-control-input:checked ~ .custom-control-label {
+    // Background
+    &::before {
+      background: $custom-toggle-checked-background;
+      border-color: $custom-toggle-checked-border-color;
+    }
+
+    // Knob
+    &::after {
+      left: $custom-toggle-width - $custom-toggle-border-width - 0.1875rem;
+      transform: translateX(-100%);
+      background: $custom-toggle-checked-knob-background;
+    }
+  }
+
+  // Disabled and checked state
+  .custom-control-input:checked:disabled ~ .custom-control-label {
+    &::before {
+      background: $custom-control-indicator-disabled-bg;
+      border-color: $border-color;
+    }
+
+    &::after {
+      background: $border-color;
+    }
+  }
+
+  // Active state
+  .custom-control-input:active:not(:disabled) ~ .custom-control-label {
+    // Knob
+    &::after {
+      width: $custom-toggle-knob-active-width;
+    }
+  }
+
+  // Active, but not checked.
+  .custom-control-input:active:not(:checked) ~ .custom-control-label {
+    &::before {
+      background-color: $custom-toggle-background-color;
+    }
+  }
+
+  // Disabled and active.
+  .custom-control-input:disabled:active ~ .custom-control-label {
+    &::before {
+      background-color: $custom-control-indicator-disabled-bg;
+    }
+  }
+
+  // Focus state
+  .custom-control-input:focus {
+    & ~ .custom-control-label {
+      &::before {
+        box-shadow: $custom-toggle-focus-box-shadow;
+      }
+    }
+
+    &:not(:checked) ~ .custom-control-label {
+      &::before {
+        box-shadow: $input-focus-box-shadow;
+      }
+    }
+  }
+
+  &.custom-toggle-sm {
+    padding-left: 2.625rem;
+
+    .custom-control-label {
+      // Background
+      &::before {
+        top: .1875rem;
+        position: absolute;
+        display: block;
+        width: $custom-toggle-width-sm;
+        height: $custom-toggle-height-sm;
+        background: $custom-toggle-background-color;
+        border-radius: $custom-toggle-border-radius;
+        border: $custom-toggle-border;
+      }
+
+      // Knob
+      &::after {
+        content: '';
+        position: absolute;
+        top: .375rem;
+        left: 0.1875rem;
+        width: $custom-toggle-knob-width-sm;
+        height: $custom-toggle-knob-height-sm;
+      }
+    }
+
+    // Checked state
+    .custom-control-input:checked ~ .custom-control-label {
+      // Knob
+      &::after {
+        left: $custom-toggle-width-sm - $custom-toggle-border-width - 0.1875rem;
+      }
+    }
+
+    // Active state
+    .custom-control-input:active:not(:disabled) ~ .custom-control-label {
+      // Knob
+      &::after {
+        width: $custom-toggle-knob-active-width-sm;
+      }
+    }
+  }
+}
