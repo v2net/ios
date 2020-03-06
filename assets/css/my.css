@@ -1,0 +1,378 @@
+/***************
+***Author: bimoe
+***Blog: 9499460.com
+***Time: 2018-12-24 04:27:48
+***************/
+html,body {
+  height: 100%;
+}
+button {
+  height: 40px; width: 100%;
+  font-size: x-large;
+  margin-top: 13px;
+}
+.wrap {
+  min-height: 80%;
+}
+.main {
+  padding-bottom:90px;
+}
+.uatip {
+  background: rgba(0,0,0,0.8);
+  text-align: center; position: fixed;
+  left:0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 998;
+  display: none;
+}
+.uatip-icon {
+  width: 52px;
+  height: 67px;
+  background: url(../images/ua-tip.png) no-repeat;
+  display: block;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+}
+.uatip-txt {
+  margin-top:
+    107px;
+  color: #fff;
+  font-size: 16px;
+  line-height: 1.5;
+}
+.polaroid {
+  margin: auto;
+  width: 140px;
+  box-shadow: 0 0 60px rgba(36,34,46,.1), 0 5px 10px rgba(36,34,46,.1);
+  margin-bottom: 20px;
+    border-radius: 15%;
+    padding: 10px;
+    background-color: #fff;
+/*    position: relative;
+    left: 116px;
+    top: 191px;
+    transform: rotate(5deg);
+    -o-transform: rotate(5deg);
+    -webkit-transform: rotate(5deg);
+    -moz-transform: rotate(5deg);*/
+}
+.logo {
+  -webkit-transition: 0.4s;
+  -webkit-transition:-webkit-transform 0.4s ease-out;
+  transition: transform 0.4s ease-out;
+  -moz-transition: -moz-transform 0.4s ease-out;
+}
+.logo:hover {
+  transform: rotateZ(360deg);
+  -webkit-transform: rotateZ(360deg);
+  -moz-transform: rotateZ(360deg);
+}
+.footer {
+  margin-top: 0px;
+  height: 50px;z-index: 9999;
+  padding: 15px 0 15px;
+}
+.btn-circle {
+  border-radius: 50px;
+  box-shadow: 2px 2px 8px 0 rgba(0, 0, 0, 0.2);
+}
+.id {
+  width: auto;
+  margin:0 auto;
+}
+.info {
+  padding-left: 0px;
+  position: relative;
+  top: 10px;
+}
+.btn{
+      font-family: Lucida Grande,Lucida Sans Unicode,Hiragino Sans GB,-apple-system,Helvetica Neue,Helvetica,Arial,PingFang SC,Hiragino Sans GB,WenQuanYi Micro Hei,Microsoft Yahei,sans-serif!important;
+
+}
+p{
+      font-family: Lucida Grande,Lucida Sans Unicode,Hiragino Sans GB,-apple-system,Helvetica Neue,Helvetica,Arial,PingFang SC,Hiragino Sans GB,WenQuanYi Micro Hei,Microsoft Yahei,sans-serif!important;
+
+}
+.topnav{
+  box-shadow: 0 2px 6px 0 rgba(0,0,0,0.12), inset 0 -1px 0 0 #dadce0;
+  background-color: #fff!important;
+}
+.tophero{
+  background-repeat: no-repeat;
+  background-color: #fff!important;
+      background-size: 289px;
+      background-position: center 76%;
+}
+.shoujibg{
+
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 460px;
+}
+.demo-modal-show {
+    opacity: 1;
+    visibility: visible;
+    transition: all .25s ease;
+}
+.demo-modal {
+    font-family: "Inter UI",sans-serif;
+    position: relative;
+    font-size: 14px;
+    line-height: 22px;
+    color: #617190;
+    max-width: 260px;
+    position: fixed;
+    z-index: 99999;
+    bottom: 48px;
+    right: 48px;
+    background: #FFF;
+    border-radius: 2px;
+    padding: 24px;
+    box-shadow: 0 4px 16px rgba(16,31,59,.16);
+    opacity: 0;
+    visibility: hidden;
+}
+.demo-modal-close {
+    cursor: pointer;
+    position: absolute;
+    top: 29px;
+    right: 24px;
+}
+.footbg{
+
+    /*background: #b0bfd44f!important;*/
+    background-repeat: no-repeat;
+        font-family: "Helvetica Neue",Helvetica,Arial,"Hiragino Sans GB","Hiragino Sans GB W3","WenQuanYi Micro Hei",sans-serif;
+}
+.footad{
+  background-image: url(../../images/bgfoot2.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position-y: -106px;
+  bottom: 0px;
+  background-position: bottom;
+      font-family: "Helvetica Neue",Helvetica,Arial,"Hiragino Sans GB","Hiragino Sans GB W3","WenQuanYi Micro Hei",sans-serif;
+}
+.adrightbg{
+ background-image: url(../../images/adrightbg.png);
+   background-size: cover;
+  background-repeat: no-repeat;
+      font-family: "Helvetica Neue",Helvetica,Arial,"Hiragino Sans GB","Hiragino Sans GB W3","WenQuanYi Micro Hei",sans-serif;
+}
+.adbuytext{
+  font-family: "Helvetica Neue",Helvetica,Arial,"Hiragino Sans GB","Hiragino Sans GB W3","WenQuanYi Micro Hei",sans-serif;
+  font-weight: 700;
+  font-size: 28px;
+}
+.rightboy{
+   /*background-image: url(../../images/rightboy.png);*/
+   background-position: right;
+}
+
+@media (min-width: 320px) and (max-width:575px) {
+ .dibuguangg{
+  text-align: center;
+  }
+}
+@media (min-width: 320px) and (max-width:575px) {
+ .btn{
+  padding: .85rem 0.85rem!important;
+  }
+}
+.sleepboy{
+  position: relative;
+         top: -58px;
+    left: 35px;
+    height: 116px;
+    display: none;
+    overflow: hidden;
+}
+@media (min-width: 320px) and (max-width:575px) {
+ .sleepboy{
+  display: inline;
+  }
+}
+.feidieicon{
+  position: relative;
+       top: 144px;
+    left: 217px;
+    height: 60px;
+}
+@media (min-width: 320px) and (max-width:575px) {
+ .footer{
+  margin-top: 0px;
+  }
+}
+.fdb-block {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizelegibility;
+padding-top: 10px;
+    position: relative;
+    background-size: cover;
+    background-color: #FFF;
+    font-family: 'pingfang SC','helvetica neue',arial,'hiragino sans gb','microsoft yahei ui','microsoft yahei',simsun,sans-serif;
+    background-image: url(/bg001.png);
+    background-size: cover;
+    opacity: 0.7;
+
+}
+.fdb-block, .fdb-block {
+    background-position: center;
+    background-repeat: no-repeat;
+ 
+}
+.fdb-block img.fdb-icon, .fdb-block img.fdb-icon-round {
+    width: auto;
+    width: 2.75rem;
+}
+.youhuidibu{
+  -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizelegibility;
+    font-family: 'pingfang SC','helvetica neue',arial,'hiragino sans gb','microsoft yahei ui','microsoft yahei',simsun,sans-serif;
+}
+@media (min-width: 320px) and (max-width:575px) {
+ .fdb-block{
+  background-image: url(../../images/bg002.png);
+  }
+}
+.leadtext-1{
+  font-size: 16px!important;
+margin-bottom: 0px;
+margin-top: -20px;
+}
+.leadtext-2{
+  font-size: 14px!important;
+
+}
+.buttonblock{
+   
+}
+@media (min-width: 320px) and (max-width:575px) {
+.buttonblock{
+    display: block;
+    width: 100%;
+    font-size: 14px!important;
+    }
+}
+.smjianju{
+
+}
+@media (min-width: 320px) and (max-width:575px) {
+.smjianju{
+    padding: 1.475rem!important;
+    margin-top: 68px;
+    margin-bottom: 68px;
+    }
+}
+@media (min-width: 320px) and (max-width:575px) {
+.table td, .table th {
+    padding:.40rem!important;
+}
+}
+
+.saomaqcode{
+      position: relative;
+    position: relative;
+    width: 160px;
+    left: -20px;
+    top: 2px;
+
+}
+
+.btnqcode{
+  width: 160px;
+  padding-top: 5px!important;
+}
+#myTemplate{
+  padding: 0px!important;
+}
+.alsoapp{
+
+  padding: 100px 10px 100px 10px;
+margin-top: -200px;
+}
+.superlogo{
+      position: relative;
+    position: relative;
+    width: 160px;
+    left: -20px;
+    top: 2px;
+
+}
+.diqiuboy{
+  background-image: url(../../images/diqiu.png);
+  background-position: left;
+  background-position: bottom;
+  background-repeat: no-repeat;
+}
+.next-icon {
+    color: #000;
+}
+.appsizetext{
+  font-size: 14px;
+}
+@media (min-width: 300px) and (max-width:370px) {
+.appiconssm{
+    max-width: 65px!important;
+    }
+    .appsizetext{
+    display: block!important;
+    font-size: 13px;
+    }
+}
+@media (min-width: 371px) and (max-width:418px) {
+    .appsizetext{
+    display: block!important;
+    }
+}
+@media (min-width: 300px) and (max-width:560px) {
+.carousel-control-prev {
+    left: -23px!important;
+}
+.carousel-control-next {
+    right: -23px!important;
+}
+}
+
+@media (min-width: 320px) and (max-width:575px) {
+.saomaqcode{
+   display: none;
+    }
+}
+.servicetext{
+  padding-top: 10px!important;
+    padding-bottom: 12px!important;
+    padding-left: 8px!important;
+    padding-right: 8px!important;
+    font-size: 14px!important;
+      -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizelegibility;
+    font-family: 'pingfang SC','helvetica neue',arial,'hiragino sans gb','microsoft yahei ui','microsoft yahei',simsun,sans-serif;
+}
+.serviceicontext{
+    position: relative;
+    bottom: -8px;
+}
+@media (min-width: 320px) and (max-width:575px) {
+.servicetext{
+   font-size: 12px!important;
+   padding-top: 8px!important;
+    padding-bottom: 12px!important;
+    padding-left: 8px!important;
+    padding-right: 8px!important;
+      -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizelegibility;
+    font-family: 'pingfang SC','helvetica neue',arial,'hiragino sans gb','microsoft yahei ui','microsoft yahei',simsun,sans-serif;
+    }
+.serviceicontext{
+    position: relative;
+    bottom: -6px;
+}
+}
