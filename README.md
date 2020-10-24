@@ -8,4 +8,4 @@ https://v2net.github.io/ios
 
 #### 【3】[Shadowrocket小火箭 最新版在线安装](https://appledi.com/Shadowrocket/)
 
-### [Shadowrocket.ipa](https://github.com/v2net/ios/releases/)
+[Shadowrocket.ipa](https://github.com/v2net/ios/releases/)
